@@ -1,0 +1,16 @@
+wicketGuardian - incorporate wicket and security solutions
+
+Aims to incorporate wicket and security solutions to easily sit on top -
+starting with Apache Shiro as first supported solution.
+
+Based upon the work of Brian Topping, Tauren Mills (wicketstuff shiro)
+and Matt Brictson (simple shiro-wicket).
+
+Please note that for usage you need to provide the shiro-core at runtime
+in your environment. Reason is to easily swap an insecure/ broken Apache
+Shiro version to a fixed one without depending on this project to fix
+the final import yourself.
+
+wicketGuardian currently should work with Apache Shiro 1.0.0,
+1.1.0 and 1.1.1 (later is targeted in its pom and works 100%);
+wicket version is defined at 1.4.14 (maybe pluggable later?)
