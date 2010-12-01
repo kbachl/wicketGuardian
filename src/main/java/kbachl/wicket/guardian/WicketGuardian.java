@@ -28,13 +28,13 @@ import java.util.List;
  * {@link org.apache.shiro.authz.annotation.RequiresAuthentication @RequiresAuthentication}
  * and
  * {@link org.apache.shiro.authz.annotation.RequiresPermissions @RequiresPermissions})
- * on Wicket Pages. The {@code ShiroWicketPlugin} will ensure that only
+ * on Wicket Pages. The {@code WicketGuardian} will ensure that only
  * authorized users can access these pages, and will show an appropriate
  * error page or login page otherwise.
  * See {@link #isInstantiationAuthorized isInstantiationAuthorized()}.
  * </li>
  * <li>You can also use the same Shiro annotations on individual components,
- * like Links and Panels. The {@code ShiroWicketPlugin} will automatically
+ * like Links and Panels. The {@code WicketGuardian} will automatically
  * hide these components from unauthorized users.
  * See {@link #isActionAuthorized isActionAuthorized()}.
  * </li>
@@ -81,7 +81,7 @@ import java.util.List;
  * protected void init()
  * {
  * super.init();
- * new ShiroWicketPlugin()
+ * new WicketGuardian()
  * .setLoginPage(MyLoginPage.class)
  * .setUnauthorizedPage(MyAccessDeniedPage.class)
  * .install(this);
@@ -110,7 +110,7 @@ import java.util.List;
  * &#064;Override
  * public Page onRuntimeException(Page page, RuntimeException e)
  * {
- * ShiroWicketPlugin.get().onException(page, e);
+ * WicketGuardian.get().onException(page, e);
  * return super.onRuntimeException(page, e);
  * }
  * }</pre>
@@ -141,7 +141,7 @@ public class WicketGuardian
             };
 
     /**
-     * Returns the {@code ShiroWicketPlugin} instance that has been installed
+     * Returns the {@code WicketGuardian} instance that has been installed
      * in the current Wicket application. This is a convenience method that
      * only works within a Wicket thread, and it assumes that
      * {@link #install install()} has already been called.
@@ -149,7 +149,7 @@ public class WicketGuardian
      * @return instance of WicketGuardian
      * @throws IllegalStateException if there is no Wicket application bound
      *                               to the current thread, or if a
-     *                               {@code ShiroWicketPlugin} has not been
+     *                               {@code WicketGuardian} has not been
      *                               installed.
      */
     public static WicketGuardian get() {
@@ -163,8 +163,8 @@ public class WicketGuardian
         IAuthorizationStrategy authz = settings.getAuthorizationStrategy();
         if (!(authz instanceof WicketGuardian)) {
             throw new IllegalStateException(
-                    "A ShiroWicketPlugin has not been installed in this Wicket " +
-                            "application. You must call ShiroWicketPlugin.install() in " +
+                    "A WicketGuardian has not been installed in this Wicket " +
+                            "application. You must call WicketGuardian.install() in " +
                             "your application init()."
             );
         }
@@ -194,7 +194,7 @@ public class WicketGuardian
     }
 
     /**
-     * Installs this {@code ShiroWicketPlugin} as both the
+     * Installs this {@code WicketGuardian} as both the
      * {@link IAuthorizationStrategy} and the
      * {@code IUnauthorizedComponentInstantiationListener} for the given
      * Wicket application.
