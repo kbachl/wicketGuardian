@@ -1,10 +1,36 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Please Log In</title>
+    <style type="text/css">
+        label {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+
+<h1>Please Log In</h1>
+
+<wicket:container wicket:id="feedback"></wicket:container>
+
+<form wicket:id="login" method="post">
+    <fieldset class="login">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" wicket:id="username"/>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" wicket:id="password"/>
+
+        <div class="button-bar group">
+            <input type="submit" value="Log in"/>
+        </div>
+        <!-- /.button-bar -->
+
+    </fieldset>
+    <!-- /.login -->
+</form>
 
 </body>
 </html>

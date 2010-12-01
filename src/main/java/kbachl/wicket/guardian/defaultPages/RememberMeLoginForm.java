@@ -1,10 +1,34 @@
 package kbachl.wicket.guardian.defaultPages;
 
+import org.apache.wicket.markup.html.form.CheckBox;
+import org.apache.wicket.model.Model;
+
 /**
- * Created by IntelliJ IDEA.
- * User: korbinianbachl
- * Date: 01.12.2010
- * Time: 14:20:44
+ * A variation of {@link LoginForm} that includes a "remember me" checkbox.
+ * The checkbox will be unchecked by default. Your markup must contain
+ * {@code <input type="checkbox" wicket:id="rememberme"/>}.
+ *
+ * @author Matt Brictson
+ * @author Korbinian Bachl
  */
-public class RememberMeLoginForm {
+public class RememberMeLoginForm extends LoginForm {
+    private CheckBox _rememberCheck;
+
+    /**
+     * Create a login form with a "remember me" checkbox.
+     *
+     * @param id Component Id
+     */
+    public RememberMeLoginForm(String id) {
+        super(id);
+        add(_rememberCheck = new CheckBox("rememberme", Model.of(false)));
+    }
+
+    /**
+     * Returns {@code true} to enable the "remember me" feature if the
+     * checkbox is checked.
+     */
+    protected boolean remember() {
+        return _rememberCheck.getModelObject();
+    }
 }

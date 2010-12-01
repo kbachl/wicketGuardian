@@ -1,10 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<wicket:panel>
+    <wicket:enclosure child="logout">
+        Hello, <span wicket:id="user">user</span>!
+        <a wicket:id="logout" href="javascript://">Log out</a>
+    </wicket:enclosure>
+    <a wicket:id="login" href="javascript://">Log in</a>
+</wicket:panel>
