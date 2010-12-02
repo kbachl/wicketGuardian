@@ -9,6 +9,7 @@ import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.settings.ISecuritySettings;
 
@@ -343,9 +344,9 @@ public class WicketGuardian
      * their rendering can be controlled via annotations. See
      * {@link #isActionAuthorized isActionAuthorized()}.
      */
-    public <T extends Component> boolean isInstantiationAuthorized(
-            Class<T> componentClass) {
-        if (Page.class.isAssignableFrom(componentClass)) {
+    public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
+
+        if (Page.class.isAssignableFrom(componentClass) || Component.class.isAssignableFrom(componentClass)) {
             try {
                 assertAuthorized(componentClass);
             }
@@ -358,6 +359,19 @@ public class WicketGuardian
         }
         return true;
     }
+
+    public static <T extends Component> boolean isAuthorizedFor(Class<T> pageClass) {
+        return get().isInstantiationAuthorized(pageClass);
+    }
+
+    public static boolean isAuthorizedFor(WebPage page) {
+        return get().isInstantiationAuthorized(page.getPageClass());
+    }
+
+    public static boolean isAuthorizedFor(Component c) {
+        return get().isInstantiationAuthorized(c.getClass());
+    }
+
 
     /**
      * Returns the localized message for the {@code loginRequired} key.
