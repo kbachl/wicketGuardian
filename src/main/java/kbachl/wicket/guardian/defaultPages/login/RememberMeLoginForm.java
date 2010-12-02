@@ -1,10 +1,10 @@
-package kbachl.wicket.guardian.defaultPages;
+package kbachl.wicket.guardian.defaultPages.login;
 
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.model.Model;
 
 /**
- * A variation of {@link LoginForm} that includes a "remember me" checkbox.
+ * A variation of {@link kbachl.wicket.guardian.defaultPages.login.LoginForm} that includes a "remember me" checkbox.
  * The checkbox will be unchecked by default. Your markup must contain
  * {@code <input type="checkbox" wicket:id="rememberme"/>}.
  *

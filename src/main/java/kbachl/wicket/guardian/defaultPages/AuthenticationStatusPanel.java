@@ -1,5 +1,6 @@
 package kbachl.wicket.guardian.defaultPages;
 
+import kbachl.wicket.guardian.defaultPages.login.LoginLink;
 import org.apache.shiro.SecurityUtils;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;

@@ -1,6 +1,6 @@
 package kbachl.wicket.guardian;
 
-import kbachl.wicket.guardian.defaultPages.LoginPage;
+import kbachl.wicket.guardian.defaultPages.login.LoginPage;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.aop.*;
@@ -9,7 +9,6 @@ import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
 import org.apache.wicket.authorization.IUnauthorizedComponentInstantiationListener;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.settings.ISecuritySettings;
 
@@ -346,7 +345,7 @@ public class WicketGuardian
      */
     public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
 
-        if (Page.class.isAssignableFrom(componentClass) || Component.class.isAssignableFrom(componentClass)) {
+        if (Page.class.isAssignableFrom(componentClass)) {
             try {
                 assertAuthorized(componentClass);
             }
@@ -360,16 +359,47 @@ public class WicketGuardian
         return true;
     }
 
-    public static <T extends Component> boolean isAuthorizedFor(Class<T> pageClass) {
-        return get().isInstantiationAuthorized(pageClass);
+    /**
+     * Simple method based on isInstantiationAuthorized now for all Components
+     * TODO: clearify why isInstantiationAuthorized is limited to Page-classes only?
+     *
+     * @param componentClass
+     * @param <T>
+     * @return
+     */
+    public <T extends Component> boolean isComponentInstantiationAuthorized(Class<T> componentClass) {
+
+        try {
+            assertAuthorized(componentClass);
+        }
+        catch (AuthorizationException ae) {
+            // Store exception for use later in the request by
+            // ShiroUnauthorizedComponentInstantiationListener
+            RequestCycle.get().setMetaData(EXCEPTION_KEY, ae);
+            return false;
+        }
+        return true;
     }
 
-    public static boolean isAuthorizedFor(WebPage page) {
-        return get().isInstantiationAuthorized(page.getPageClass());
+    /**
+     * Convinient method to do a simple check against a class
+     *
+     * @param componentClass class of the component/ page
+     * @param <T>            ext. Component
+     * @return true if isAuthorized
+     */
+    public static <T extends Component> boolean isAuthorizedFor(Class<T> componentClass) {
+        return get().isComponentInstantiationAuthorized(componentClass);
     }
 
+    /**
+     * Convinient method to do a simple check against a class
+     *
+     * @param c class of the component/ page
+     * @return true if isAuthorized
+     */
     public static boolean isAuthorizedFor(Component c) {
-        return get().isInstantiationAuthorized(c.getClass());
+        return get().isComponentInstantiationAuthorized(c.getClass());
     }
 
 

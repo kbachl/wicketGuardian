@@ -1,7 +1,8 @@
-package kbachl.wicket.guardian.defaultPages;
+package kbachl.wicket.guardian.defaultPages.login;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.wicket.RestartResponseException;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
@@ -17,7 +18,8 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 public class LoginPage extends WebPage {
     public LoginPage() {
         super();
-        add(new LoginForm("login"));
+        add(CSSPackageResource.getHeaderContribution(LoginPage.class, "loginpage.css"));
+        add(new RememberMeLoginForm("login"));
         add(new FeedbackPanel("feedback"));
     }
 
