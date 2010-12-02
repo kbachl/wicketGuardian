@@ -24,11 +24,12 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body {
     background-color: #EDEDED;
+    padding-top: 130px;
 }
 
 .login_position {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 20px;
     width: 400px;
     height: 200px;
 }
@@ -100,3 +101,10 @@ body {
     background: #D80000;
 }
 
+.error_box ul {
+    list-style: none;
+}
+
+.error_box ul li {
+    margin: 3px;
+}
