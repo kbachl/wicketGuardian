@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Login</title>
@@ -13,21 +13,24 @@
 
 <div class="login login_position login_box">
     <form wicket:id="login">
-        <p class="field">Username<br/>
-            <input type="text" name="textfield" id="textfield" wicket:id="username"/>
+        <p class="field">
+            <wicket:message key="username">Username</wicket:message>
+            <br/><input type="text" name="textfield" id="textfield" wicket:id="username"/>
         </p>
 
-        <p class="field">Password<br/>
-            <input type="password" name="textfield2" id="textfield2" wicket:id="password"/>
+        <p class="field">
+            <wicket:message key="password">Password</wicket:message>
+            <br/><input type="password" name="textfield2" id="textfield2" wicket:id="password"/>
         </p>
 
         <p class="send">
-            <input type="submit" name="button" id="button" value="Log in"/>
+            <input type="submit" name="button" id="button" value="Log in" wicket:id="submit"/>
         </p>
 
         <p class="rememberme">
             <input type="checkbox" name="checkbox" id="checkbox" wicket:id="rememberme"/>
-            remember me on this computer </p>
+            <wicket:message key="rememberme">remember me on this computer</wicket:message>
+        </p>
     </form>
 </div>
 </body>

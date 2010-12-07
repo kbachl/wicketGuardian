@@ -1,4 +1,4 @@
-package kbachl.wicket.guardian.defaultPages.login;
+package kbachl.wicket.guardian.pages.login;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.wicket.RestartResponseException;

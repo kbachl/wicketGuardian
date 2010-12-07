@@ -1,6 +1,7 @@
 package kbachl.wicket.guardian;
 
-import kbachl.wicket.guardian.defaultPages.login.LoginPage;
+
+import kbachl.wicket.guardian.pages.login.LoginPage;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.aop.*;
@@ -13,10 +14,7 @@ import org.apache.wicket.markup.html.pages.AccessDeniedPage;
 import org.apache.wicket.settings.ISecuritySettings;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Enhances Wicket to integrate closely with the Apache Shiro security
@@ -410,11 +408,12 @@ public class WicketGuardian
      * @return a message String
      */
     private String getLoginRequiredMessage(Component component) {
+
         return component.getLocalizer().getString(
                 LOGIN_REQUIRED_MESSAGE_KEY,
                 component,
                 null,
-                "You need to be logged in to continue."
+                ResourceBundle.getBundle(this.getClass().getName()).getString("LOGIN_REQUIRED_MESSAGE")
         );
     }
 

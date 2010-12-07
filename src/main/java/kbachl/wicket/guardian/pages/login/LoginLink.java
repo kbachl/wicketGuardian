@@ -1,4 +1,4 @@
-package kbachl.wicket.guardian.defaultPages.login;
+package kbachl.wicket.guardian.pages.login;
 
 import kbachl.wicket.guardian.WicketGuardian;
 import org.apache.shiro.SecurityUtils;

@@ -1,4 +1,4 @@
-package kbachl.wicket.guardian.defaultPages;
+package kbachl.wicket.guardian.panels;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresUser;

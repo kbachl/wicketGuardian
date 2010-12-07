@@ -1,14 +1,12 @@
-package kbachl.wicket.guardian.defaultPages.login;
+package kbachl.wicket.guardian.pages.login;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.wicket.markup.html.form.PasswordTextField;
-import org.apache.wicket.markup.html.form.RequiredTextField;
-import org.apache.wicket.markup.html.form.StatelessForm;
-import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.form.*;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 /**
  * A very simple login form with two fields: {@code username} and
@@ -56,6 +54,7 @@ public class LoginForm extends StatelessForm<Void> {
                 "password",
                 new Model<String>()
         ));
+        add(new Button("submit", new ResourceModel("button")));
     }
 
     /**
